@@ -13,6 +13,8 @@ defaults:
       values:
         layout: "machine"
 
+collections_dir: collections
+
 collections:
     machines:
         output: true
