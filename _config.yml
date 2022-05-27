@@ -1,0 +1,14 @@
+baseurl: /machine_data
+url: "https://wsu-tss.github.io"
+
+plugins:
+    - jekyll-feed
+    - jekyll-sitemap
+    - jekyll-seo-tag
+
+defaults:
+    - scope:
+        path: ""
+        type: "machines"
+      values:
+        layout: "machine"
