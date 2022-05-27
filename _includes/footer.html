@@ -1,0 +1,11 @@
+<footer class="footer bg-light">
+    <div class="container">
+        <div class="row">
+            {% for item in site.data.footer %}
+                <div class="col pt-2 text-center">
+                    <p id="footer-text"><a href="{{ item.link }}" target="_blank">{{ item.icon }}</a></p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</footer>
