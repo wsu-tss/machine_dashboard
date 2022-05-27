@@ -1,4 +1,4 @@
-baseurl: /machine_data
+baseurl: /machine_dashboard
 url: "https://wsu-tss.github.io"
 
 plugins:
