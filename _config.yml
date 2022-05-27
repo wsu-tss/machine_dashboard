@@ -12,3 +12,7 @@ defaults:
         type: "machines"
       values:
         layout: "machine"
+
+collections:
+    machines:
+        output: true
