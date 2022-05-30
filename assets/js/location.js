@@ -1,10 +1,12 @@
+import { API_ENDPOINT } from './config.js';
+
 document.addEventListener('DOMContentLoaded', () => {
     let location = document.getElementById("api_name");
     let locationName = location.textContent;
 
     let parser = new DOMParser();
     let request = new XMLHttpRequest();
-    request.open("GET", "https://www.soledigital.com.au/accesspack/UWS_data.asp");
+    request.open("GET", API_ENDPOINT);
     request.send();
     request.onload = () => {
         let xmlDoc = parser.parseFromString(request.response, "text/xml");
