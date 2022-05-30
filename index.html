@@ -2,13 +2,11 @@
 layout: default
 title: Home
 ---
-<div class="mt-5">
-    <p class="display">Locations</p>
-</div>
-<div class="mt-2">
+
+<div class="row mt-5">
     {% assign locations = site.locations %}
     {% for location in locations %}
-        <div class="col-sm-12 col-md-6 col-lg-4 d-flex align-items-stretch mt-4 justify-content-center">
+        <div class="col-sm-6 col-md-6 col-lg-6 d-flex align-items-stretch mt-4 justify-content-center">
             <div class="card" style="width: 18rem;">
                 <img class="card-img-top" src="{{ site.baseurl }}/assets/images/locations/{{ location.image }}" alt="Image of {{ certificate.short_name }}">
                 <div class="card-body">
@@ -22,4 +20,3 @@ title: Home
             </div>
         </div>
     {% endfor %}
-</div>
