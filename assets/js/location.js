@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     var location = document.getElementById("api_name");
     var locationName = location.textContent;
-    // console.log(name);
 
     let parser = new DOMParser();
     let request = new XMLHttpRequest();
