@@ -1,14 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
-    var location = document.getElementById("api_name");
-    var locationName = location.textContent;
+    let location = document.getElementById("api_name");
+    let locationName = location.textContent;
 
     let parser = new DOMParser();
     let request = new XMLHttpRequest();
     request.open("GET", "https://www.soledigital.com.au/accesspack/UWS_data.asp");
     request.send();
     request.onload = () => {
-        // console.log(request.response);
-        xmlDoc = parser.parseFromString(request.response, "text/xml")
+        let xmlDoc = parser.parseFromString(request.response, "text/xml");
+
+        // Checking if there was an error
         if (request.status != 200) {
             console.log(`error ${request.status} ${request.statusText}`)
         }
