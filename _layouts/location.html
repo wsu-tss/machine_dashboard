@@ -3,6 +3,14 @@ layout: default
 ---
 
 <div class="mt-2">
-    <h1>{{ page.name }}</h1>
+    <h1 id="location">{{ page.name }}</h1>
 </div>
 <hr>
+
+<script type="text/javascript" charset="utf-8">
+    document.addEventListener('DOMContentLoaded', () => {
+        var location = document.getElementById("location");
+        var name = location.textContent;
+        console.log(name);
+    });
+</script>
