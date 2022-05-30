@@ -7,6 +7,7 @@ layout: default
 </div>
 <div class="container row mt-2">
     <p><i class="bi bi-geo-alt"></i> </p>
+    <!-- Important to use api_name as JavaScript uses this as a variable to access API -->
     <p id=api_name>{{ page.api_name }}</p>
 </div>
 <hr>
@@ -48,11 +49,9 @@ layout: default
 			}
             // Reading the root of XML
             let institute = xmlDoc.getElementsByTagName("site")[0];
-            console.log(institute);
 
             // All the locations (e.g. Kingswood, PEIH)
             let locations = institute.getElementsByTagName("site");
-            console.log(locations)
 
             // iterating over the locations
             for (let i = 0; i < locations.length; i++){
@@ -69,29 +68,27 @@ layout: default
                     // Extracting all the equipment type
                     let equipmentType = equipment.getElementsByTagName("equiptype");
 
-                    console.log(`EquipmentID: ${equipmentId}`);
-                    console.log(equipmentId);
-
                     // iterating over the equipment
                     for (let j = 0; j < equipmentId.length; j++){
                         let eqId = equipmentId[j].firstChild.nodeValue;
                         let eqType = equipmentType[j].firstChild.nodeValue;
 
+                        // Creating a table
                         let table = document.getElementById("machineList");
+
+                        // Adds a row at the bottom
                         let row = table.insertRow(-1);
+
+                        // Creating respective cells
                         let serialNumber = row.insertCell(0);
                         let machineName = row.insertCell(1);
                         let machineType = row.insertCell(2);
 
+                        // Adding values to the table cells
                         serialNumber.innerHTML = j+1;
                         machineName.innerHTML = eqId;
                         machineType.innerHTML = eqType;
-
-                        console.log(eqId);
-                        console.log(eqType);
                     }
-                    console.log(equipment)
-                    console.log(siteName);
                 }
             }
 		}
