@@ -47,8 +47,13 @@ layout: default
 
                 // Checking if the site name is the same as the page (i.e. Only machines from Kingswood campus for Kingswood page)
                 if (siteName == locationName) {
+                    // root of the equipment for a location (site)
                     let equipment = locations[i].getElementsByTagName("equipment")[0];
+
+                    // Extracting all the equipment Id
                     let equipmentId = equipment.getElementsByTagName("equipid");
+
+                    // Extracting all the equipment type
                     let equipmentType = equipment.getElementsByTagName("equiptype");
 
                     console.log(`EquipmentID: ${equipmentId}`);
