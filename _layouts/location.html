@@ -15,6 +15,19 @@ layout: default
     <ol id="machines">
 
     </ol>
+
+    <table class="table" id="machineList">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Machine</th>
+                <th>Machine Type</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
 </div>
 
 <script type="text/javascript" charset="utf-8">
@@ -42,7 +55,7 @@ layout: default
             console.log(locations)
 
             // iterating over the locations
-            for(let i = 0; i < locations.length; i++){
+            for (let i = 0; i < locations.length; i++){
                 let siteName = locations[i].getElementsByTagName("name")[0].firstChild.nodeValue;
 
                 // Checking if the site name is the same as the page (i.e. Only machines from Kingswood campus for Kingswood page)
@@ -63,6 +76,17 @@ layout: default
                     for (let j = 0; j < equipmentId.length; j++){
                         let eqId = equipmentId[j].firstChild.nodeValue;
                         let eqType = equipmentType[j].firstChild.nodeValue;
+
+                        let table = document.getElementById("machineList");
+                        let row = table.insertRow(-1);
+                        let serialNumber = row.insertCell(0);
+                        let machineName = row.insertCell(1);
+                        let machineType = row.insertCell(2);
+
+                        serialNumber.innerHTML = j+1;
+                        machineName.innerHTML = eqId;
+                        machineType.innerHTML = eqType;
+
                         console.log(eqId);
                         console.log(eqType);
                     }
