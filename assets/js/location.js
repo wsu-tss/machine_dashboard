@@ -72,11 +72,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     let serialNumber = row.insertCell(0);
                     let machineName = row.insertCell(1);
                     let machineType = row.insertCell(2);
+                    let machineHours = row.insertCell(3);
 
                     // Adding values to the table cells
                     serialNumber.innerHTML = j+1;
                     machineName.innerHTML = eqId;
                     machineType.innerHTML = eqType;
+                    machineHours.innerHTML = usageHours;
                 }
             }
         }
