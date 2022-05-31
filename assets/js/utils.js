@@ -6,7 +6,7 @@ export function byUsage(a, b) {
 export function apiData(xmlDoc) {
     /**
     * Utility function that takes XML file and restructures data in an Array.
-    * @xmlDoc {Array} - An array of Campus objects containing data about location, equipment, and user logs.
+    * @xmlDoc {Array} - XML data.
     */
     let machineData = [];
     // Reading the root of XML
