@@ -1,9 +1,11 @@
 import { API_ENDPOINT } from './config.js';
 import { byUsage } from './utils.js';
+import { apiData } from './utils.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-    let location = document.getElementById("api_name");
-    let locationName = location.textContent;
+    // Getting the site name from the html DOM element
+    let site = document.getElementById("api_name");
+    let siteName = site.textContent;
 
     let parser = new DOMParser();
     let request = new XMLHttpRequest();
@@ -22,54 +24,36 @@ document.addEventListener('DOMContentLoaded', () => {
         // All the locations (e.g. Kingswood, PEIH)
         let locations = institute.getElementsByTagName("site");
 
+        // Calling apiData to structure the data from XML
+        let machineData = apiData(xmlDoc);
+
         // Creating an object
         let machineTable = [];
 
-        // iterating over the locations
-        for (let i = 0; i < locations.length; i++){
-            let siteName = locations[i].getElementsByTagName("name")[0].firstChild.nodeValue;
+        // Iterates over the location
+        for (let i = 0; i < machineData.length; i++) {
+            let locationName = machineData[i]["name"];
 
-            // Checking if the site name is the same as the page (i.e. Only machines from Kingswood campus for Kingswood page)
-            if (siteName == locationName) {
-                // root of the equipment for a location (site)
-                let equipment = locations[i].getElementsByTagName("equipment")[0];
+            if (locationName == siteName) {
+                // Iterates over the equipment at a location
+                for (let j = 0; j < machineData[i]["equipment"].length; j++) {
+                    let machineName = machineData[i]["equipment"][j]["equipid"];
+                    let machineType = machineData[i]["equipment"][j]["equiptype"];
 
-                // Extracting all the equipment Id
-                let equipmentId = equipment.getElementsByTagName("equipid");
-
-                // Extracting all the equipment type
-                let equipmentType = equipment.getElementsByTagName("equiptype");
-
-                // iterating over the equipment
-                for (let j = 0; j < equipmentId.length; j++){
-                    let eqId = equipmentId[j].firstChild.nodeValue;
-                    let eqType = equipmentType[j].firstChild.nodeValue;
-
-                    // Machine logs
-                    let logs = equipment.getElementsByTagName("logs")[j];
-
-                    // Getting all the login for a machine
-                    let logins = logs.getElementsByTagName("login");
-
-                    // Stores the machine usage time
                     let usageTime = 0;
 
-                    for (let k = 0; k < logins.length; k++) {
-                        // Getting duration from each login
-                        let duration = parseInt(logins[k].getElementsByTagName("duration")[0].firstChild.nodeValue);
-
-                        // Incrementing total usage time
+                    // Iterates over the logs of the equipment
+                    for (let k = 0; k < machineData[i]["equipment"][j]["logs"].length; k++) {
+                        // Calculate the duration
+                        let duration = parseInt(machineData[i]["equipment"][j]["logs"][k]["duration"]);
                         usageTime += duration;
                     }
 
-                    // Converting from minutes to hours
                     let usageHours = Number((usageTime/60).toFixed(2));
 
-                    // Calculating the number of times users have used a machine 
-                    let loginTimes = logins.length;
+                    let loginTimes = machineData[i]["equipment"][j]["logs"].length;
 
-                    // Adding data to the table object
-                    machineTable.push({"machineName": eqId, "machineType": eqType, "machineHours": usageHours, "machineLogins": loginTimes})
+                    machineTable.push({"machineName": machineName, "machineType": machineType, "machineHours": usageHours, "machineLogins": loginTimes, "machineLocation": locationName});
                 }
             }
         }
