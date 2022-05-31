@@ -41,6 +41,27 @@ document.addEventListener('DOMContentLoaded', () => {
                     let eqId = equipmentId[j].firstChild.nodeValue;
                     let eqType = equipmentType[j].firstChild.nodeValue;
 
+                    // Machine logs
+                    let logs = equipment.getElementsByTagName("logs")[j];
+
+                    // Getting all the login for a machine
+                    let logins = logs.getElementsByTagName("login");
+
+                    // Stores the machine usage time
+                    let usageTime = 0;
+
+                    for (let k = 0; k < logins.length; k++) {
+                        // Getting duration from each login
+                        let duration = parseInt(logins[k].getElementsByTagName("duration")[0].firstChild.nodeValue);
+
+                        // Incrementing total usage time
+                        usageTime += duration;
+                    }
+
+                    let usageHours = Number((usageTime/60).toFixed(2));
+
+                    let loginTimes = logins.length;
+
                     // Creating a table
                     let table = document.getElementById("machineList");
 
@@ -51,11 +72,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     let serialNumber = row.insertCell(0);
                     let machineName = row.insertCell(1);
                     let machineType = row.insertCell(2);
+                    let machineHours = row.insertCell(3);
+                    let machineLogins = row.insertCell(4);
 
                     // Adding values to the table cells
                     serialNumber.innerHTML = j+1;
                     machineName.innerHTML = eqId;
                     machineType.innerHTML = eqType;
+                    machineHours.innerHTML = usageHours;
+                    machineLogins.innerHTML = loginTimes;
                 }
             }
         }
