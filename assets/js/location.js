@@ -41,6 +41,27 @@ document.addEventListener('DOMContentLoaded', () => {
                     let eqId = equipmentId[j].firstChild.nodeValue;
                     let eqType = equipmentType[j].firstChild.nodeValue;
 
+                    // Machine logs
+                    let logs = equipment.getElementsByTagName("logs")[j];
+
+                    // Getting all the login for a machine
+                    let logins = logs.getElementsByTagName("login");
+
+                    // Stores the machine usage time
+                    let usageTime = 0;
+
+                    for (let k = 0; k < logins.length; k++) {
+                        // Getting duration from each login
+                        let duration = parseInt(logins[k].getElementsByTagName("duration")[0].firstChild.nodeValue);
+
+                        // Incrementing total usage time
+                        usageTime += duration;
+                    }
+
+                    let usageHours = Number((usageTime/60).toFixed(2));
+
+                    console.log(`${eqId}'s usage time is ${usageHours} hours`);
+
                     // Creating a table
                     let table = document.getElementById("machineList");
 
