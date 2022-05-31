@@ -1,4 +1,5 @@
 import { API_ENDPOINT } from './config.js';
+import { byUsage } from './utils.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     let location = document.getElementById("api_name");
@@ -20,6 +21,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // All the locations (e.g. Kingswood, PEIH)
         let locations = institute.getElementsByTagName("site");
+
+        // Creating an object
+        let machineTable = [];
 
         // iterating over the locations
         for (let i = 0; i < locations.length; i++){
@@ -58,31 +62,42 @@ document.addEventListener('DOMContentLoaded', () => {
                         usageTime += duration;
                     }
 
+                    // Converting from minutes to hours
                     let usageHours = Number((usageTime/60).toFixed(2));
 
+                    // Calculating the number of times users have used a machine 
                     let loginTimes = logins.length;
 
-                    // Creating a table
-                    let table = document.getElementById("machineList");
-
-                    // Adds a row at the bottom
-                    let row = table.insertRow(-1);
-
-                    // Creating respective cells
-                    let serialNumber = row.insertCell(0);
-                    let machineName = row.insertCell(1);
-                    let machineType = row.insertCell(2);
-                    let machineHours = row.insertCell(3);
-                    let machineLogins = row.insertCell(4);
-
-                    // Adding values to the table cells
-                    serialNumber.innerHTML = j+1;
-                    machineName.innerHTML = eqId;
-                    machineType.innerHTML = eqType;
-                    machineHours.innerHTML = usageHours;
-                    machineLogins.innerHTML = loginTimes;
+                    // Adding data to the table object
+                    machineTable.push({"machineName": eqId, "machineType": eqType, "machineHours": usageHours, "machineLogins": loginTimes})
                 }
             }
+        }
+
+        // Sorting the table
+        machineTable.sort(byUsage);
+
+        // Creating a table
+        let table = document.getElementById("machineList");
+
+        // Adding to the table
+        for (let i = 0; i < machineTable.length; i++) {
+            // Adds a row at the bottom
+            let row = table.insertRow(-1);
+
+            // Creating respective cells
+            let serialNumber = row.insertCell(0);
+            let machineName = row.insertCell(1);
+            let machineType = row.insertCell(2);
+            let machineHours = row.insertCell(3);
+            let machineLogins = row.insertCell(4);
+
+            // Adding values to the table cells
+            serialNumber.innerHTML = i+1;
+            machineName.innerHTML = machineTable[i]["machineName"];
+            machineType.innerHTML = machineTable[i]["machineType"];
+            machineHours.innerHTML = machineTable[i]["machineHours"];
+            machineLogins.innerHTML = machineTable[i]["machineLogins"];
         }
     }
 });
