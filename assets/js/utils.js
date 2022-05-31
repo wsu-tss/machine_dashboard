@@ -3,11 +3,11 @@ export function byUsage(a, b) {
     return parseInt(b.machineHours) - parseInt(a.machineHours);
 }
 
+/**
+* Utility function that takes XML file and restructures data in an Array.
+* @param {Array} xmlDoc - XML data.
+*/
 export function apiData(xmlDoc) {
-    /**
-    * Utility function that takes XML file and restructures data in an Array.
-    * @xmlDoc {Array} - XML data.
-    */
     let machineData = [];
     // Reading the root of XML
     let institute = xmlDoc.getElementsByTagName("site")[0];
