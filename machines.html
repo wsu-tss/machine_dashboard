@@ -2,13 +2,29 @@
 layout: default
 title: Machines
 ---
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-    <head>
-        <meta charset="utf-8">
-        <title>{{ page.title }}</title>
-    </head>
-    <body>
-        <h1>{{ "Machines" | downcase }}</h1>
-    </body>
-</html>
+
+<div class="mt-5">
+    <h1>All Machines</h1>
+</div>
+<hr>
+
+<div class="mt-5">
+    <table class="table" id="machineList">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Machine</th>
+                <th>Machine Type</th>
+                <th>Usage (Hours)</th>
+                <th>Logins</th>
+                <th>Campus</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</div>
+
+<script src="{{ site.baseurl }}/assets/js/machines.js" type="module">
+</script>
