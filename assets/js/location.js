@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     let usageHours = Number((usageTime/60).toFixed(2));
 
-                    console.log(`${eqId}'s usage time is ${usageHours} hours`);
+                    let loginTimes = logins.length;
 
                     // Creating a table
                     let table = document.getElementById("machineList");
@@ -73,12 +73,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     let machineName = row.insertCell(1);
                     let machineType = row.insertCell(2);
                     let machineHours = row.insertCell(3);
+                    let machineLogins = row.insertCell(4);
 
                     // Adding values to the table cells
                     serialNumber.innerHTML = j+1;
                     machineName.innerHTML = eqId;
                     machineType.innerHTML = eqType;
                     machineHours.innerHTML = usageHours;
+                    machineLogins.innerHTML = loginTimes;
                 }
             }
         }
