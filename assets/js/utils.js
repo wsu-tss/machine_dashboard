@@ -144,3 +144,30 @@ export function getOperatorsList(machineData) {
     }
     return operators;
 }
+
+
+/**
+* Utility function that returns an array of colors .
+*/
+function generateRandomColors() {
+    let letters = "0123456789ABCDEF";
+    let color = "#";
+
+    for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
+/**
+* Utility function that returns an array of colors.
+* @param {Int} count - Size of the array
+*/
+export function getChartColors(count) {
+    let chartColors = [];
+
+    for (let i = 0; i < count; i++) {
+        chartColors.push(generateRandomColors());
+    }
+    return chartColors;
+}
