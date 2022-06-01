@@ -2,6 +2,7 @@ import { API_ENDPOINT } from './config.js';
 import { byUsage } from './utils.js';
 import { apiData } from './utils.js';
 import { generateMachineTable } from './utils.js';
+import { makeChart } from './utils.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     // Getting the site name from the html DOM element
@@ -37,6 +38,10 @@ document.addEventListener('DOMContentLoaded', () => {
         // Creating a table
         let table = document.getElementById("machineList");
 
+        // chart variables
+        let xValues = [];
+        let yValues = [];
+
         // Adding to the table
         for (let i = 0; i < machineTable.length; i++) {
             // Adds a row at the bottom
@@ -55,6 +60,13 @@ document.addEventListener('DOMContentLoaded', () => {
             machineType.innerHTML = machineTable[i]["machineType"];
             machineHours.innerHTML = machineTable[i]["machineHours"];
             machineLogins.innerHTML = machineTable[i]["machineLogins"];
+
+            // Storing values for pie chart
+            xValues.push(machineTable[i]["machineName"]);
+            yValues.push(machineTable[i]["machineHours"]);
         }
+
+        // Calling function to make chart
+        makeChart("machineUsage", siteName ,xValues, yValues);
     }
 });
