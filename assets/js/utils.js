@@ -62,7 +62,6 @@ export function apiData(xmlDoc) {
     return machineData;
 }
 
-
 /**
 * Utility function that takes XML file and restructures data in an Array.
 * @param {Array} machineData - Array of the machine data.
