@@ -62,6 +62,12 @@ export function apiData(xmlDoc) {
     return machineData;
 }
 
+
+/**
+* Utility function that takes XML file and restructures data in an Array.
+* @param {Array} machineData - Array of the machine data.
+* @param {String} siteName - Optional argument for filtering machines by location.
+*/
 export function generateMachineTable(machineData, siteName) {
     // Creating an object
     let machineTable = [];
