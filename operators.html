@@ -2,13 +2,29 @@
 layout: default
 title: Operators
 ---
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-    <head>
-        <meta charset="utf-8">
-        <title>{{ page.title }}</title>
-    </head>
-    <body>
-        <h1>{{ "Oeprators" | downcase }}</h1>
-    </body>
-</html>
+<div class="mt-5">
+    <h1>Operators</h1>
+</div>
+<hr>
+
+<div class="mt-5">
+    <div class="container row">
+        <h2>Total Operators: <span class="badge badge-secondary" id="totalOperators"></span></h2>
+    </div>
+</div>
+<div class="mt-5">
+    <table class="table" id="operatorList">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Operator Id</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</div>
+
+<script src="{{ site.baseurl }}/assets/js/operators.js" type="module">
+</script>

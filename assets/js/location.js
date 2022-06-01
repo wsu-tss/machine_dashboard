@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Checking if there was an error
         if (request.status != 200) {
-            console.log(`error ${request.status} ${request.statusText}`)
+            console.log(`error ${request.status} ${request.statusText}`);
         }
         // Reading the root of XML
         let institute = xmlDoc.getElementsByTagName("site")[0];
