@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Checking if there was an error
         if (request.status != 200) {
-            console.log(`error ${request.status} ${request.statusText}`)
+            console.log(`error ${request.status} ${request.statusText}`);
         }
 
         // calling apiData to structure the data from the XML response
