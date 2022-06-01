@@ -62,7 +62,7 @@ export function apiData(xmlDoc) {
     return machineData;
 }
 
-export function generateTable(machineData, siteName) {
+export function generateMachineTable(machineData, siteName) {
     // Creating an object
     let machineTable = [];
 

@@ -1,7 +1,7 @@
 import { API_ENDPOINT } from './config.js';
 import { byUsage } from './utils.js';
 import { apiData } from './utils.js';
-import { generateTable } from './utils.js';
+import { generateMachineTable } from './utils.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     // Getting the site name from the html DOM element
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let machineData = apiData(xmlDoc);
 
         // Formatting the data into table for display
-        let machineTable = generateTable(machineData, siteName);
+        let machineTable = generateMachineTable(machineData, siteName);
 
         // Sorting the table
         machineTable.sort(byUsage);
