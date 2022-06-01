@@ -123,3 +123,24 @@ export function generateMachineTable(machineData, siteName) {
     }
     return machineTable;
 }
+
+/**
+* Utility function that takes an Array object and returns a set of operators.
+* @param {Array} machineData - Array of the machine data.
+*/
+export function getOperatorsList(machineData) {
+    let operators = new Set();
+
+    // iterating over the locations
+    for (let i = 0; i < machineData.length; i++) {
+        // iterating over the equipment
+        for (let j = 0; j < machineData[i]["equipment"].length; j++) {
+            // Iterating the logs
+            for (let k = 0; k < machineData[i]["equipment"][j]["logs"].length; k++) {
+                let operatorId = machineData[i]["equipment"][j]["logs"][k]["operator"];
+                operators.add(operatorId);
+            }
+        }
+    }
+    return operators;
+}
