@@ -163,11 +163,37 @@ function generateRandomColors() {
 * Utility function that returns an array of colors.
 * @param {Int} count - Size of the array
 */
-export function getChartColors(count) {
+function getChartColors(count) {
     let chartColors = [];
 
     for (let i = 0; i < count; i++) {
         chartColors.push(generateRandomColors());
     }
     return chartColors;
+}
+
+/**
+* Utility function that returns an array of colors.
+* @param {String} chartName - ChartID in DOM.
+* @param {String} siteName - Name of the campus
+* @param {Array} xValues - Labels of the pie chart 
+* @param {Array} yValues - Values of the pie chart
+*/
+export function makeChart(chartName, siteName, xValues, yValues) {
+    new Chart("machineUsage", {
+        type: "pie",
+        data: {
+            labels: xValues,
+            datasets: [{
+                backgroundColor: getChartColors(xValues.length),
+                data: yValues
+            }]
+        },
+        options: {
+            title: {
+                display: true,
+                text: `Machine Usage in ${siteName}`
+            }
+        }
+    });
 }
