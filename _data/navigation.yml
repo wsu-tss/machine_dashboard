@@ -1,0 +1,6 @@
+- name: Home
+  link: /
+- name: Machines
+  link: /machines.html
+- name: Operators
+  link: /operators.html

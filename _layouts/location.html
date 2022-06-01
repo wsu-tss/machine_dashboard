@@ -1,0 +1,37 @@
+---
+layout: default
+---
+
+<div class="mt-5">
+    <h1 id="location">{{ page.name }}</h1>
+</div>
+<div class="container row mt-2">
+    <p><i class="bi bi-geo-alt"></i> </p>
+    <!-- Important to use api_name as JavaScript uses this as a variable to access API -->
+    <p id=api_name>{{ page.api_name }}</p>
+</div>
+<hr>
+
+<div class="machineChart">
+    <canvas id="machineUsage" style="width:100%;max-width:6000px"></canvas>
+</div>
+
+<div class="mt-5">
+    <table class="table" id="machineList">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Machine</th>
+                <th>Machine Type</th>
+                <th>Usage (Hours)</th>
+                <th>Logins</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</div>
+
+<script src="{{ site.baseurl }}/assets/js/location.js" type="module">
+</script>

@@ -1,0 +1,31 @@
+baseurl: /machine_dashboard
+url: "https://wsu-tss.github.io"
+
+plugins:
+    - jekyll-feed
+    - jekyll-sitemap
+    - jekyll-seo-tag
+
+defaults:
+    - scope:
+        path: ""
+        type: "machines"
+      values:
+        layout: "machine"
+    - scope:
+        path: ""
+        type: "locations"
+      values:
+        layout: "location"
+    - scope:
+        path: "assets/images"
+      values:
+          image: true
+
+collections_dir: collections
+
+collections:
+    machines:
+        output: true
+    locations:
+        output: true

@@ -1,0 +1,34 @@
+---
+layout: default
+title: Machines
+---
+
+<div class="mt-5">
+    <h1>All Machines</h1>
+</div>
+<hr>
+
+<div class="machineChart">
+    <canvas id="machineUsage" style="width:100%;max-width:6000px"></canvas>
+</div>
+
+<div class="mt-5">
+    <table class="table" id="machineList">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Machine</th>
+                <th>Machine Type</th>
+                <th>Usage (Hours)</th>
+                <th>Logins</th>
+                <th>Campus</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</div>
+
+<script src="{{ site.baseurl }}/assets/js/machines.js" type="module">
+</script>
