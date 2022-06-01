@@ -1,6 +1,7 @@
 import { API_ENDPOINT } from './config.js';
 import { byUsage } from './utils.js';
 import { apiData } from './utils.js';
+import { generateMachineTable } from './utils.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     let parser = new DOMParser();
@@ -18,34 +19,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // calling apiData to structure the data from the XML response
         let machineData = apiData(xmlDoc);
 
-        // Creating an array to store the table information
-        let machineTable = [];
-
-        // Iterates over the location
-        for (let i = 0; i < machineData.length; i++) {
-            let locationName = machineData[i]["name"];
-
-            // Iterates over the equipment at a location
-            for (let j = 0; j < machineData[i]["equipment"].length; j++) {
-                let machineName = machineData[i]["equipment"][j]["equipid"];
-                let machineType = machineData[i]["equipment"][j]["equiptype"];
-
-                let usageTime = 0;
-
-                // Iterates over the logs of the equipment
-                for (let k = 0; k < machineData[i]["equipment"][j]["logs"].length; k++) {
-                    // Calculate the duration
-                    let duration = parseInt(machineData[i]["equipment"][j]["logs"][k]["duration"]);
-                    usageTime += duration;
-                }
-
-                let usageHours = Number((usageTime/60).toFixed(2));
-
-                let loginTimes = machineData[i]["equipment"][j]["logs"].length;
-
-                machineTable.push({"machineName": machineName, "machineType": machineType, "machineHours": usageHours, "machineLogins": loginTimes, "machineLocation": locationName});
-            }
-        }
+        // Formatting the data into table for display
+        let machineTable = generateMachineTable(machineData);
 
         // Sorting the table
         machineTable.sort(byUsage);

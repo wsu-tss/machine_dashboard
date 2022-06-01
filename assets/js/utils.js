@@ -61,3 +61,65 @@ export function apiData(xmlDoc) {
     }
     return machineData;
 }
+
+/**
+* Utility function that takes XML file and restructures data in an Array.
+* @param {Array} machineData - Array of the machine data.
+* @param {String} siteName - Optional argument for filtering machines by location.
+*/
+export function generateMachineTable(machineData, siteName) {
+    // Creating an object
+    let machineTable = [];
+
+    // Iterates over the location
+    for (let i = 0; i < machineData.length; i++) {
+        let locationName = machineData[i]["name"];
+
+        if (siteName !== undefined) {
+            if (locationName == siteName) {
+                // Iterates over the equipment at a location
+                for (let j = 0; j < machineData[i]["equipment"].length; j++) {
+                    let machineName = machineData[i]["equipment"][j]["equipid"];
+                    let machineType = machineData[i]["equipment"][j]["equiptype"];
+
+                    let usageTime = 0;
+
+                    // Iterates over the logs of the equipment
+                    for (let k = 0; k < machineData[i]["equipment"][j]["logs"].length; k++) {
+                        // Calculate the duration
+                        let duration = parseInt(machineData[i]["equipment"][j]["logs"][k]["duration"]);
+                        usageTime += duration;
+                    }
+
+                    let usageHours = Number((usageTime/60).toFixed(2));
+
+                    let loginTimes = machineData[i]["equipment"][j]["logs"].length;
+
+                    machineTable.push({"machineName": machineName, "machineType": machineType, "machineHours": usageHours, "machineLogins": loginTimes, "machineLocation": locationName});
+                }
+            }
+        } else {
+            // Iterates over the equipment at a location
+            for (let j = 0; j < machineData[i]["equipment"].length; j++) {
+                let machineName = machineData[i]["equipment"][j]["equipid"];
+                let machineType = machineData[i]["equipment"][j]["equiptype"];
+
+                let usageTime = 0;
+
+                // Iterates over the logs of the equipment
+                for (let k = 0; k < machineData[i]["equipment"][j]["logs"].length; k++) {
+                    // Calculate the duration
+                    let duration = parseInt(machineData[i]["equipment"][j]["logs"][k]["duration"]);
+                    usageTime += duration;
+                }
+
+                let usageHours = Number((usageTime/60).toFixed(2));
+
+                let loginTimes = machineData[i]["equipment"][j]["logs"].length;
+
+                machineTable.push({"machineName": machineName, "machineType": machineType, "machineHours": usageHours, "machineLogins": loginTimes, "machineLocation": locationName});
+            }
+        }
+    }
+    return machineTable;
+}
