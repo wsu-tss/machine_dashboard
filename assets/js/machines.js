@@ -48,7 +48,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Adding values to the table cells
             serialNumber.innerHTML = i+1;
-            machineName.innerHTML = machineTable[i]["machineName"];
+            let machineLink = document.createElement('a');
+            machineLink.setAttribute("href", "https://www.google.com");
+
+            let machine = document.createElement('div');
+            machine.innerHTML = machineTable[i]["machineName"];
+
+            machineLink.appendChild(machine);
+            machineName.appendChild(machineLink);
+            // machineName.innerHTML = machineTable[i]["machineName"];
             machineType.innerHTML = machineTable[i]["machineType"];
             machineHours.innerHTML = machineTable[i]["machineHours"];
             machineLogins.innerHTML = machineTable[i]["machineLogins"];
