@@ -49,7 +49,12 @@ document.addEventListener('DOMContentLoaded', () => {
             // Adding values to the table cells
             serialNumber.innerHTML = i+1;
             let machineLink = document.createElement('a');
-            machineLink.setAttribute("href", "https://www.google.com");
+
+            let pageName = "machines/" + machineTable[i]["machineName"].replace(/\s/g, '') + ".html";
+
+
+
+            machineLink.setAttribute("href", pageName);
 
             let machine = document.createElement('div');
             machine.innerHTML = machineTable[i]["machineName"];

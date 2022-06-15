@@ -1,5 +1,5 @@
 ---
 short_name: "laser"
-name: "Laser Cutter"
+name: "Epilog Fusion 40"
 location: ["PEIH", "KWD"]
 ---
