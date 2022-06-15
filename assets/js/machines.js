@@ -50,18 +50,21 @@ document.addEventListener('DOMContentLoaded', () => {
             serialNumber.innerHTML = i+1;
             let machineLink = document.createElement('a');
 
+            // Creating the path for individual machines
+            // Removing the spaces from the machine.
+            // make sure that the collections have the same name as the machines
             let pageName = "machines/" + machineTable[i]["machineName"].replace(/\s/g, '') + ".html";
 
-
-
+            // Setting up the path to the table attribute
             machineLink.setAttribute("href", pageName);
 
+            // Creating element to enter the machine name
             let machine = document.createElement('div');
             machine.innerHTML = machineTable[i]["machineName"];
 
             machineLink.appendChild(machine);
             machineName.appendChild(machineLink);
-            // machineName.innerHTML = machineTable[i]["machineName"];
+
             machineType.innerHTML = machineTable[i]["machineType"];
             machineHours.innerHTML = machineTable[i]["machineHours"];
             machineLogins.innerHTML = machineTable[i]["machineLogins"];
