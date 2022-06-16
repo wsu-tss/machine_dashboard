@@ -4,6 +4,7 @@ import { apiData } from './utils.js';
 import { generateMachineTable } from './utils.js';
 import { getMachineLogs } from './utils.js';
 import { getMachineHours } from './utils.js';
+import { sortLogsByDate } from './utils.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     let machineName = document.getElementById("machineName").textContent;
@@ -28,6 +29,11 @@ document.addEventListener('DOMContentLoaded', () => {
         sites.forEach((site, index) => {
             let machineLogs = getMachineLogs(machineData, site, machineName);
 
+            // Checking if the machine Logs is not empty
+            if (machineLogs) {
+                machineLogs.sort(sortLogsByDate);
+            }
+
             // Creating table
 
             // using site as an ID for the table
@@ -46,8 +52,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     operator.innerHTML = log["operator"];
                     duration.innerHTML = log["duration"];
                 });
+            } else {
+                let noDataAlert = document.createElement('div');
+                noDataAlert.setAttribute("class", "alert alert-warning");
+                noDataAlert.setAttribute("role", "alert")
+                noDataAlert.innerHTML = "No data available"
+                table.append(noDataAlert);
             }
-            
+
             // calculates machine hours for both the campus
             allMachineHours += getMachineHours(machineLogs);
 

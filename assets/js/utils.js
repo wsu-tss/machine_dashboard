@@ -3,6 +3,27 @@ export function byUsage(a, b) {
     return parseInt(b.machineHours) - parseInt(a.machineHours);
 }
 
+export function sortLogsByDate(a, b) {
+    // Sorting date in descending order
+    let [aDateComponent, aTimeComponent] = a.timestamp.split(' ');
+    let [aDay, aMonth, aYear] = aDateComponent.split('/');
+    let [aHours, aMinutes, aSeconds] = aTimeComponent.split(':');
+    // Adding "20" as a string to the year
+    aYear = "20" + aYear;
+
+    let dateA = new Date(+aYear, aMonth - 1, +aDay, +aHours, +aMinutes, +aSeconds);
+
+    let [bDateComponent, bTimeComponent] = b.timestamp.split(' ');
+    let [bDay, bMonth, bYear] = bDateComponent.split('/');
+    let [bHours, bMinutes, bSeconds] = bTimeComponent.split(':');
+    // Adding "20" as a string to the year
+    bYear = "20" + bYear;
+
+    let dateB = new Date(+bYear, bMonth - 1, +bDay, +bHours, +bMinutes, +bSeconds);
+
+    return dateB - dateA
+}
+
 /**
 * Utility function that takes XML file and restructures data in an Array.
 * @param {Array} xmlDoc - XML data.
@@ -206,12 +227,12 @@ export function makeChart(chartName, siteName, xValues, yValues) {
 export function getMachineLogs(machineData, site, machineName) {
     let allLogs = [];
 
-    // console.log(site);
     machineData.forEach((campusData, index) => {
-        // console.log(campusData["name"]);
+        // Checking if the site is the campus name
         if (site == campusData["name"]){
             let machines = campusData["equipment"];
 
+            // iterating over each machine
             machines.forEach((machine, index) => {
                 if (machineName == machine["equipid"]){
                     allLogs.push(machine["logs"]);
@@ -219,7 +240,7 @@ export function getMachineLogs(machineData, site, machineName) {
             });
         }
     });
-
+    // Returning the array
     return allLogs[0];
 }
 
@@ -230,6 +251,7 @@ export function getMachineLogs(machineData, site, machineName) {
 export function getMachineHours(machineLogs) {
     let machineHours = 0;
 
+    // Checking if the machineLogs is not empty
     if (machineLogs) {
         machineLogs.forEach((log, index) => {
             let duration = parseInt(log["duration"]);
