@@ -51,12 +51,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     operator.innerHTML = log["operator"];
                     duration.innerHTML = log["duration"];
                 });
-            } else {
-                let noDataAlert = document.createElement('div');
-                noDataAlert.setAttribute("class", "alert alert-warning");
-                noDataAlert.setAttribute("role", "alert")
-                noDataAlert.innerHTML = "No data available"
-                table.append(noDataAlert);
             }
 
             // calculates machine hours for both the campus

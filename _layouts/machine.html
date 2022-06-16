@@ -40,21 +40,23 @@ layout: default
         </tbody>
     </table>
 </div>
-<div class="mt-2">
-    <h2>PEIH</h2>
-    <table class="table" id="PEIH">
-        <thead>
-            <tr>
-                <th>Timestamp</th>
-                <th>Operator</th>
-                <th>Duration (Minutes)</th>
-            </tr>
-        </thead>
-        <tbody>
+{% if page.location contains "PEIH" %}
+    <div class="mt-2">
+        <h2>PEIH</h2>
+        <table class="table" id="PEIH">
+            <thead>
+                <tr>
+                    <th>Timestamp</th>
+                    <th>Operator</th>
+                    <th>Duration (Minutes)</th>
+                </tr>
+            </thead>
+            <tbody>
 
-        </tbody>
-    </table>
-</div>
+            </tbody>
+        </table>
+    </div>
+{% endif %}
 
 <script src="{{ site.baseurl }}/assets/js/machine.js" type="module">
 </script>
