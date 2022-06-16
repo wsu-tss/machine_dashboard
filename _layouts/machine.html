@@ -2,6 +2,28 @@
 layout: default
 ---
 
-<div class="mt-2">
-    <h1>Machine: {{ page.name }}</h1>
+<div class="mt-5">
+    <h1>{{ page.name }}</h1>
 </div>
+<hr>
+<div class="row">
+    <div class="col-sm-6 col-lg-6">
+        <img class="img-fluid" src="{{ site.baseurl }}/assets/images/machines/{{ page.image }}" alt="">
+    </div>
+    <div class="card col-sm-6 col-lg-6" style="width: 18rem;">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"><b>Type:</b>
+                <span class="badge badge-primary">{{ page.short_name }}</span>
+            </li>
+            <li class="list-group-item"><b>Location:</b>
+                {% for location in page.location %}
+                    <span class="badge badge-secondary" id="location">{{ location }}</span>
+                {% endfor %}
+            </li>
+            <li class="list-group-item"><b>Total Hours:</b></li>
+        </ul>
+    </div>
+</div>
+
+<script src="{{ site.baseurl }}/assets/js/machine.js" type="module">
+</script>
