@@ -145,7 +145,6 @@ export function getOperatorsList(machineData) {
     return operators;
 }
 
-
 /**
 * Utility function that returns an array of colors .
 */
@@ -176,7 +175,7 @@ function getChartColors(count) {
 * Utility function that returns an array of colors.
 * @param {String} chartName - ChartID in DOM.
 * @param {String} siteName - Name of the campus
-* @param {Array} xValues - Labels of the pie chart 
+* @param {Array} xValues - Labels of the pie chart
 * @param {Array} yValues - Values of the pie chart
 */
 export function makeChart(chartName, siteName, xValues, yValues) {
@@ -196,4 +195,32 @@ export function makeChart(chartName, siteName, xValues, yValues) {
             }
         }
     });
+}
+
+/**
+* Utility function that returns the logs of the given machine.
+* @param {Array} machineData - Array of all the data for machines on all campuses.
+* @param {Array} sites - Array of campus sites.
+* @param {String} machineName - Machine whose logs are requested.
+*/
+
+export function getMachineLogs(machineData, sites, machineName) {
+    let allLogs = [];
+
+    sites.forEach((site, index) => {
+        console.log(site);
+        machineData.forEach((campusData, index) => {
+            console.log(campusData["name"]);
+            if (site == campusData["name"]){
+                let machines = campusData["equipment"];
+
+                machines.forEach((machine, index) => {
+                    if (machineName == machine["equipid"]){
+                        allLogs.push(machine["logs"]);
+                    }
+                });
+            }
+        });
+    });
+    return allLogs;
 }

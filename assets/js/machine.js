@@ -2,6 +2,7 @@ import { API_ENDPOINT } from './config.js';
 import { sites } from './config.js';
 import { apiData } from './utils.js';
 import { generateMachineTable } from './utils.js';
+import { getMachineLogs } from './utils.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     // console.log(sites);
@@ -24,22 +25,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
         console.log(machineData);
 
-        sites.forEach((site, index) => {
-            console.log(site);
-            machineData.forEach((campusData, index) => {
-                console.log(campusData["name"]);
-                if (site == campusData["name"]){
-                    let machines = campusData["equipment"];
+        let machineLogs = getMachineLogs(machineData, sites, machineName);
 
-                    machines.forEach((machine, index) => {
-                        if (machineName == machine["equipid"]){
-                            let logs = machine["logs"];
-                            console.log(logs);
-                        }
-                    });
-                }
-            });
-        });
+        console.log(machineLogs);
+
+        // sites.forEach((site, index) => {
+        //     console.log(site);
+        //     machineData.forEach((campusData, index) => {
+        //         console.log(campusData["name"]);
+        //         if (site == campusData["name"]){
+        //             let machines = campusData["equipment"];
+        //
+        //             machines.forEach((machine, index) => {
+        //                 if (machineName == machine["equipid"]){
+        //                     let logs = machine["logs"];
+        //                     console.log(logs);
+        //                 }
+        //             });
+        //         }
+        //     });
+        // });
+
     }
 
 });
