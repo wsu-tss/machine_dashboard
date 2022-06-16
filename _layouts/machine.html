@@ -20,9 +20,25 @@ layout: default
                     <span class="badge badge-secondary" id="location">{{ location }}</span>
                 {% endfor %}
             </li>
-            <li class="list-group-item"><b>Total Hours:</b></li>
+            <li class="list-group-item"><b>Total Hours:</b> <span id="totalHours"></span></li>
         </ul>
     </div>
+</div>
+<hr>
+<div class="mt-2">
+    <h2>Kingswood</h2>
+    <table class="table" id="Kingswood">
+        <thead>
+            <tr>
+                <th>Timestamp</th>
+                <th>Operator</th>
+                <th>Duration (Minutes)</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
 </div>
 
 <script src="{{ site.baseurl }}/assets/js/machine.js" type="module">

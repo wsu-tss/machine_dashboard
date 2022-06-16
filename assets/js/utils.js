@@ -203,24 +203,39 @@ export function makeChart(chartName, siteName, xValues, yValues) {
 * @param {Array} sites - Array of campus sites.
 * @param {String} machineName - Machine whose logs are requested.
 */
-
-export function getMachineLogs(machineData, sites, machineName) {
+export function getMachineLogs(machineData, site, machineName) {
     let allLogs = [];
 
-    sites.forEach((site, index) => {
-        console.log(site);
-        machineData.forEach((campusData, index) => {
-            console.log(campusData["name"]);
-            if (site == campusData["name"]){
-                let machines = campusData["equipment"];
+    // console.log(site);
+    machineData.forEach((campusData, index) => {
+        // console.log(campusData["name"]);
+        if (site == campusData["name"]){
+            let machines = campusData["equipment"];
 
-                machines.forEach((machine, index) => {
-                    if (machineName == machine["equipid"]){
-                        allLogs.push(machine["logs"]);
-                    }
-                });
-            }
-        });
+            machines.forEach((machine, index) => {
+                if (machineName == machine["equipid"]){
+                    allLogs.push(machine["logs"]);
+                }
+            });
+        }
     });
-    return allLogs;
+
+    return allLogs[0];
+}
+
+/**
+* Utility function that returns the total number of hours used by a machine.
+* @param {Array} machineLogs - Array of all the logs for a machine.
+*/
+export function getMachineHours(machineLogs) {
+    let machineHours = 0;
+
+    if (machineLogs) {
+        machineLogs.forEach((log, index) => {
+            let duration = parseInt(log["duration"]);
+            machineHours += duration;
+        });
+    }
+
+    return machineHours;
 }
