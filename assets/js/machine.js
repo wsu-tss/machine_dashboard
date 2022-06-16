@@ -6,8 +6,6 @@ import { getMachineLogs } from './utils.js';
 import { getMachineHours } from './utils.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-    // console.log(sites);
-
     let machineName = document.getElementById("machineName").textContent;
 
     let parser = new DOMParser();
@@ -30,6 +28,27 @@ document.addEventListener('DOMContentLoaded', () => {
         sites.forEach((site, index) => {
             let machineLogs = getMachineLogs(machineData, site, machineName);
 
+            // Creating table
+
+            // using site as an ID for the table
+            let table = document.getElementById(site);
+
+            if (machineLogs) {
+                machineLogs.forEach((log, index) => {
+                    let row = table.insertRow(-1);
+
+                    // Creating respective cells
+                    let timestamp = row.insertCell(0);
+                    let operator = row.insertCell(1);
+                    let duration = row.insertCell(2);
+
+                    timestamp.innerHTML = log["timestamp"];
+                    operator.innerHTML = log["operator"];
+                    duration.innerHTML = log["duration"];
+                });
+            }
+            
+            // calculates machine hours for both the campus
             allMachineHours += getMachineHours(machineLogs);
 
         });
