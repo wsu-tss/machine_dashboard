@@ -35,7 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             // Creating table
-
             // using site as an ID for the table
             let table = document.getElementById(site);
 
