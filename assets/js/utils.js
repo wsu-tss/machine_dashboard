@@ -235,7 +235,10 @@ export function getMachineLogs(machineData, site, machineName) {
             // iterating over each machine
             machines.forEach((machine, index) => {
                 if (machineName == machine["equipid"]){
-                    allLogs.push(machine["logs"]);
+                    // Checks if the array is not empty
+                    if (machine["logs"].length > 0) {
+                        allLogs.push(machine["logs"]);
+                    }
                 }
             });
         }
