@@ -3,6 +3,27 @@ export function byUsage(a, b) {
     return parseInt(b.machineHours) - parseInt(a.machineHours);
 }
 
+export function sortLogsByDate(a, b) {
+    // Sorting date in descending order
+    let [aDateComponent, aTimeComponent] = a.timestamp.split(' ');
+    let [aDay, aMonth, aYear] = aDateComponent.split('/');
+    let [aHours, aMinutes, aSeconds] = aTimeComponent.split(':');
+    // Adding "20" as a string to the year
+    aYear = "20" + aYear;
+
+    let dateA = new Date(+aYear, aMonth - 1, +aDay, +aHours, +aMinutes, +aSeconds);
+
+    let [bDateComponent, bTimeComponent] = b.timestamp.split(' ');
+    let [bDay, bMonth, bYear] = bDateComponent.split('/');
+    let [bHours, bMinutes, bSeconds] = bTimeComponent.split(':');
+    // Adding "20" as a string to the year
+    bYear = "20" + bYear;
+
+    let dateB = new Date(+bYear, bMonth - 1, +bDay, +bHours, +bMinutes, +bSeconds);
+
+    return dateB - dateA
+}
+
 /**
 * Utility function that takes XML file and restructures data in an Array.
 * @param {Array} xmlDoc - XML data.
@@ -145,7 +166,6 @@ export function getOperatorsList(machineData) {
     return operators;
 }
 
-
 /**
 * Utility function that returns an array of colors .
 */
@@ -176,7 +196,7 @@ function getChartColors(count) {
 * Utility function that returns an array of colors.
 * @param {String} chartName - ChartID in DOM.
 * @param {String} siteName - Name of the campus
-* @param {Array} xValues - Labels of the pie chart 
+* @param {Array} xValues - Labels of the pie chart
 * @param {Array} yValues - Values of the pie chart
 */
 export function makeChart(chartName, siteName, xValues, yValues) {
@@ -196,4 +216,51 @@ export function makeChart(chartName, siteName, xValues, yValues) {
             }
         }
     });
+}
+
+/**
+* Utility function that returns the logs of the given machine.
+* @param {Array} machineData - Array of all the data for machines on all campuses.
+* @param {Array} sites - Array of campus sites.
+* @param {String} machineName - Machine whose logs are requested.
+*/
+export function getMachineLogs(machineData, site, machineName) {
+    let allLogs = [];
+
+    machineData.forEach((campusData, index) => {
+        // Checking if the site is the campus name
+        if (site == campusData["name"]){
+            let machines = campusData["equipment"];
+
+            // iterating over each machine
+            machines.forEach((machine, index) => {
+                if (machineName == machine["equipid"]){
+                    // Checks if the array is not empty
+                    if (machine["logs"].length > 0) {
+                        allLogs.push(machine["logs"]);
+                    }
+                }
+            });
+        }
+    });
+    // Returning the array
+    return allLogs[0];
+}
+
+/**
+* Utility function that returns the total number of hours used by a machine.
+* @param {Array} machineLogs - Array of all the logs for a machine.
+*/
+export function getMachineHours(machineLogs) {
+    let machineHours = 0;
+
+    // Checking if the machineLogs is not empty
+    if (machineLogs) {
+        machineLogs.forEach((log, index) => {
+            let duration = parseInt(log["duration"]);
+            machineHours += duration;
+        });
+    }
+
+    return machineHours;
 }
