@@ -1,8 +1,4 @@
----
-title: About
-date: 2022-06-20
-tag: ["details"]
----
+# About
 
 This project tracks the usage of machines present at WSU campuses in Kingswood and PEIH by generating dashboards.
 

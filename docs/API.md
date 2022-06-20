@@ -1,8 +1,4 @@
----
-title: API
-date: 2022-06-20
-tag: ["API", "code"]
----
+# API
 
 The API provided for this project is from Sole Digital.
 There is no API key needed.
