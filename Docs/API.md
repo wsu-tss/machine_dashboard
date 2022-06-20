@@ -4,7 +4,6 @@ date: 2022-06-20
 tag: ["API", "code"]
 ---
 
-
 # API endpoint
 
 The API provided for this project is from Sole Digital.
