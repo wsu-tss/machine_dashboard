@@ -14,3 +14,5 @@ From `develop` branch create a new feature branch with the name of your feature 
 Once you have completed your feature development, make a pull request.
 
 Make sure to clearly explain what your feature does.
+
+If you are adding a new function, make sure to include it in the documentation.
