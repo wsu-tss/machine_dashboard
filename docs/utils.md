@@ -178,3 +178,55 @@ This should give the following results:
 ```
 
 Generates the list of operators by collecting information from the machine logs.
+
+
+**Example**:
+
+```
+// Refer to apiData function to see how machineData is generated
+let machineData = apiData(xmlDoc);
+
+let operators = getOperatorsList(machineData);
+```
+
+This returns the following:
+
+```
+{'00000000', '00000001', '00000002'}
+```
+
+## Machine Logs
+
+```
+/**
+* Utility function that returns the logs of the given machine.
+* @param {Array} machineData - Array of all the data for machines on all campuses.
+* @param {Array} sites - Array of campus sites.
+* @param {String} machineName - Machine whose logs are requested.
+*/
+```
+
+Gets the logs for the requested machine.
+
+**Example**:
+
+```
+let machineLogs = getMachineLogs(machineData, site, machineName)
+```
+
+This returns the following:
+
+```
+[
+    {
+        timestamp: '14/04/22 00:16:23',
+        operator: '069184D4',
+        duration: 0
+    },
+    {
+        timestamp: '13/04/22 06:01:34',
+        operator: 'A061A400', 
+        duration: 14
+    }
+]
+```
