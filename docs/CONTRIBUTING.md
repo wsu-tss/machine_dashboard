@@ -3,7 +3,7 @@
 This project follows Git Flow development.
 Refer to [Git Flow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow) documentation.
 
-Make sure to follow the [installation instructions](docs/installation.md) to get started with the project.
+Make sure to follow the [installation instructions](installation.md) to get started with the project.
 
 ## How to contribute to this project?
 
