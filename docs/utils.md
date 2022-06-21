@@ -36,7 +36,7 @@ let machineLogs = [{timestamp: '14/04/22 00:16:23', operator: '069184D4', durati
 machineLogs.sort(sorLogsByDate);
 ```
 
-### Get API data
+## Get API data
 
 ```
 /**
@@ -122,6 +122,48 @@ The return value is as follows:
                 ]
             }
         ]
+    }
+]
+```
+
+## Generate Machine Table
+
+```
+/**
+* Utility function that takes XML file and restructures data in an Array.
+* @param {Array} machineData - Array of the machine data.
+* @param {String} siteName - Optional argument for filtering machines by location.
+*/
+```
+
+Generates an Array of Objects used for making tables in HTML.
+
+**Example**:
+
+```
+// Refer to apiData function to see how machineData is generated
+let machineData = apiData(xmlDoc);
+
+let machineTable = generateMachineTable(machineData);
+```
+
+This should give the following results:
+
+```
+[
+    {
+        machineName: "Epilog Fusion 40",
+        machineType: "laser",
+        machinehours: 122,
+        machineLogins: 100,
+        machineLocation: "Kingswood"
+    },
+    {
+        machineName: "Belt Sander",
+        machineType: "honing",
+        machinehours: 12,
+        machineLogins: 12,
+        machineLocation: "Kingswood"
     }
 ]
 ```
