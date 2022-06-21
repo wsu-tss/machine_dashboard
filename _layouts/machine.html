@@ -2,6 +2,67 @@
 layout: default
 ---
 
-<div class="mt-2">
-    <h1>Machine: {{ page.name }}</h1>
+<div class="mt-5">
+    <h1 id="machineName">{{ page.name }}</h1>
 </div>
+<hr>
+<div class="row">
+    <div class="col-sm-6 col-lg-6">
+        <img class="img-fluid" src="{{ site.baseurl }}/assets/images/machines/{{ page.image }}" alt="{{ page.name }}" width="320px" height="200px">
+    </div>
+    <div class="card col-sm-6 col-lg-6" style="width: 18rem;">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"><b>Type:</b>
+                <span class="badge badge-primary">{{ page.short_name }}</span>
+            </li>
+            <li class="list-group-item"><b>Location:</b>
+                {% for location in page.location %}
+                    <a class="badge badge-secondary" id="location" href="{{ site.baseurl }}/locations/{{ location }}.html">{{ location }}</a>
+                {% endfor %}
+            </li>
+            <li class="list-group-item"><b>Total Hours:</b> <span id="totalHours"></span></li>
+        </ul>
+    </div>
+</div>
+<hr>
+{% if page.location contains "Kingswood" %}
+<div class="mt-2">
+    <h2>Kingswood</h2>
+    <table class="table" id="Kingswood">
+        <thead>
+            <tr>
+                <th>Timestamp</th>
+                <th>Operator</th>
+                <th>Duration (Minutes)</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</div>
+{% endif %}
+{% if page.location contains "PEIH" %}
+    <div class="mt-2">
+        <h2>PEIH</h2>
+        <table class="table" id="PEIH">
+            <thead>
+                <tr>
+                    <th>Timestamp</th>
+                    <th>Operator</th>
+                    <th>Duration (Minutes)</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+{% endif %}
+<hr>
+<div class="mt-2">
+    {{ page.content }}
+</div>
+
+<script src="{{ site.baseurl }}/assets/js/machine.js" type="module">
+</script>
