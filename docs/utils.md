@@ -167,3 +167,14 @@ This should give the following results:
     }
 ]
 ```
+
+## Generate operators list
+
+```
+/**
+* Utility function that takes an Array object and returns a set of operators.
+* @param {Array} machineData - Array of the machine data.
+*/
+```
+
+Generates the list of operators by collecting information from the machine logs.
