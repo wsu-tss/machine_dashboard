@@ -231,7 +231,7 @@ This returns the following:
 ]
 ```
 
-# Machine Hours
+## Machine Hours
 
 ```
 /**
