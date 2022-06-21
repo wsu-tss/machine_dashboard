@@ -1,6 +1,6 @@
 # Utils
 
-This docs explains all the functions present in [utils](assets/js/utils.js).
+This docs explains all the functions present in utils.js
 
 ## Sorting methods
 
