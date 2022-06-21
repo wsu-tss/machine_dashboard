@@ -225,8 +225,51 @@ This returns the following:
     },
     {
         timestamp: '13/04/22 06:01:34',
-        operator: 'A061A400', 
+        operator: 'A061A400',
         duration: 14
     }
 ]
+```
+
+# Machine Hours
+
+```
+/**
+* Utility function that returns the total number of hours used by a machine.
+* @param {Array} machineLogs - Array of all the logs for a machine.
+*/
+```
+
+Returns the total usage time of machines in minutes.
+
+**Example**:
+
+```
+// Refer to getMachineLogs() function docs
+let machineLogs = getMachineLogs(machineData, site, machineName)
+
+let machineHours = getMachineHours(machineLogs);
+```
+
+## Chart functions
+
+```
+/**
+* Utility function that returns an array of colors.
+* @param {String} chartName - ChartID in DOM.
+* @param {String} siteName - Name of the campus
+* @param {Array} xValues - Labels of the pie chart
+* @param {Array} yValues - Values of the pie chart
+*/
+```
+
+Uses `chart.js` library to make a pie chart to show machine usage as per hours.
+
+**Example**:
+
+```
+let xValues = ["Epilog Fusion 40", "Belt Sander", "Bench Grinder"];
+let yValues = [10, 20, 30];
+
+makeChart("machineUsage", "WSU" ,xValues, yValues);
 ```
